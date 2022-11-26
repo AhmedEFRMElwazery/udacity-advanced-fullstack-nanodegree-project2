@@ -2,7 +2,7 @@
   "name": "udacity_advanced_fullstack_project2_storefront_backend",
   "version": "1.0.1",
   "description": "An API project for the fulfillment of project 2 requirements for the Udacity Advanced Fullstack Development Nanodegree",
-  "main": "server.ts",
+  "main": "server.main.ts",
   "scripts": {
     "prettier": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
     "eslint": "eslint . --ext .ts",
@@ -39,6 +39,8 @@
     "pg": "^8.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.14",
     "@types/jasmine": "^4.3.0",
@@ -48,6 +50,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
+    "babel-jest": "^29.3.1",
     "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
