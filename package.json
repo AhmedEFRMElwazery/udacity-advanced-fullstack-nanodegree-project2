@@ -18,7 +18,7 @@
     "migrate:resett": "db-migrate --env test reset",
     "migrate:test": "set ENV_STATUS=test && npm run migrate:upt && npm run test && npm run migrate:resett ",
     "start": "npm run build && nodemon dist/server.main.js"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AhmedEFRMElwazery/udacity-advanced-fullstack-nanodegree-project2.git"
