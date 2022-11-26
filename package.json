@@ -1,0 +1,65 @@
+{
+  "name": "udacity_advanced_fullstack_project2_storefront_backend",
+  "version": "1.0.1",
+  "description": "An API project for the fulfillment of project 2 requirements for the Udacity Advanced Fullstack Development Nanodegree",
+  "main": "server.ts",
+  "scripts": {
+    "prettier": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
+    "eslint": "eslint . --ext .ts",
+    "watch": "tsc-watch --esModuleInterop src/server.main.ts --outDir ./dist --onSuccess \"node ./dist/server.main.js\"",
+    "dev": "nodemon ./src/server.main.ts",
+    "build": "npx tsc",
+    "test": "npx tsc && jasmine",
+    "migrate:upd": "db-migrate up",
+    "migrate:downd": "db-migrate down",
+    "migrate:upt": "db-migrate --env test up",
+    "migrate:downt": "db-migrate --env test down",
+    "migrate:resetd": "db-migrate  reset",
+    "migrate:resett": "db-migrate --env test reset",
+    "migrate:test": "set ENV_STATUS=test && npm run migrate:upt && npm run test && npm run migrate:resett ",
+    "start": "npm run build && nodemon dist/server.main.js"
+  },  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedEFRMElwazery/udacity-advanced-fullstack-nanodegree-project2.git"
+  },
+  "author": "Ahmed E. F. R. Mohammed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedEFRMElwazery/udacity-advanced-fullstack-nanodegree-project2/issues"
+  },
+  "homepage": "https://github.com/AhmedEFRMElwazery/udacity-advanced-fullstack-nanodegree-project2#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.19.0",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.14",
+    "@types/jasmine": "^4.3.0",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^18.11.3",
+    "@types/pg": "^7.14.7",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jasmine": "^3.99.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.3.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "supertest": "^6.3.0",
+    "ts-node": "^10.9.1",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.8.4"
+  }
+}

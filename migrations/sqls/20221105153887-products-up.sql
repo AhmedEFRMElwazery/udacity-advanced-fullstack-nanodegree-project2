@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS products_table (id SERIAL PRIMARY KEY, name VARCHAR(110), price integer, category VARCHAR(50));
