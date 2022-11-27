@@ -79,7 +79,7 @@ In this step, we will create both the development (i.e. db_store_backend_dev) as
 
 - **```npm run build```**: This command will build/compile the TypeScript code into JavaScript in the `/dist` folder
 
-- **```npm run test```**: This "test" command run the above-mentioned `build` command to compile TypeScript, then will run testing using jasmine.
+- **```npm run test```**: This "test" command run the above-mentioned `build` command to compile TypeScript, then will run testing using `jasmine`.
 
 - **```npm run migrate:test```**: This "migrate:test" command will set the "ENV_STATUS" to "test", hence starting the testing phase, and will start running the `migrate:upt` command (responsible for upping the migration for testing), then the `test` command (explained above), then the `migrate:resett` (responsible for resetting the migration for testing).
 
