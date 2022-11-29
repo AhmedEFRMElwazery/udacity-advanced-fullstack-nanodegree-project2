@@ -19,7 +19,7 @@ routes_for_order(app);
 routes_for_orders_products(app);
 
 app.get("/", function (req: Request, res: Response) {
-  res.sendFile(path.resolve(__dirname, '../pages/index.html'));
+  res.sendFile(path.resolve(__dirname, '../assets/pages/index.html'));
 });
 
 app.listen(SERVERPORT, function () {
