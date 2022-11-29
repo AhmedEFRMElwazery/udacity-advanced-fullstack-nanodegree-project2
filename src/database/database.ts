@@ -7,7 +7,7 @@ import {
   DB_POSTGRES_DBTEST,
   DB_POSTGRES_PASSWORD,
   DB_POSTGRES_PORT,
-} from '../config';
+} from '../config/config';
 
 let client: any;
 

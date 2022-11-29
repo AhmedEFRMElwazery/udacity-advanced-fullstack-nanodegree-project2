@@ -1,5 +1,5 @@
 import { hashSync, compareSync, genSaltSync } from 'bcrypt';
-import { SALT_ROUNDS, BCRYPT_PASS } from '../config';
+import { SALT_ROUNDS, BCRYPT_PASS } from '../config/config';
 import Client from '../database/database';
 import { TUser } from '../types/user.type';
 

@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { verify, Secret } from 'jsonwebtoken';
-import { TOKEN } from '../config';
+import { TOKEN } from '../config/config';
 
 const verifyAuthTok = (req: Request, res: Response, next: NextFunction) => {
   try {

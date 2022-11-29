@@ -1,7 +1,7 @@
 import path from 'path';
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import { SERVERPORT } from './config';
+import { SERVERPORT } from './config/config';
 import {
   routes_for_user,
   routes_for_order,

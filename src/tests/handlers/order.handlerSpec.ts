@@ -2,7 +2,7 @@ import supertest from 'supertest';
 import jwt from 'jsonwebtoken';
 import { app } from '../../server.main';
 import client from '../../database/database';
-import { TOKEN } from '../../config';
+import { TOKEN } from '../../config/config';
 
 const req = supertest(app);
 

@@ -75,7 +75,7 @@ In this step, we will create both the development (i.e. db_store_backend_dev) as
 
 - **```npm run check```**: This will launch the `eslint` module and apply its respective rules to the codebase, hence will help in writing proper TypeScript code.
 
-- **```npm run dev```**: This command will start the nodemon server on the server.main.ts.
+- **```npm run dev```**: This command will start the `nodemon server` on the server.main.ts.
 
 - **```npm run build```**: This command will build/compile the TypeScript code into JavaScript in the `/dist` folder
 
