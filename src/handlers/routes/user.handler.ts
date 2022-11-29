@@ -1,8 +1,8 @@
 import type { Request, Response, Application } from "express";
 import jwt, { Secret } from "jsonwebtoken";
-import { TOKEN } from "../config";
-import { UserModel } from "../models/user.model";
-import verifyAuthToken from "../middleware/verifyAuthTok.middlewear";
+import { TOKEN } from "../../config";
+import { UserModel } from "../../models/user.model";
+import verifyAuthToken from "../../middleware/verifyAuthTok.middlewear";
 
 const user = new UserModel();
 

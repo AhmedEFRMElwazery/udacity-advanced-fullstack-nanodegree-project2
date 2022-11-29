@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import verifyAuthTok from "../middleware/verifyAuthTok.middlewear";
-import { OrdersProductsModel } from "../models/orders_products.model";
+import verifyAuthTok from "../../middleware/verifyAuthTok.middlewear";
+import { OrdersProductsModel } from "../../models/orders_products.model";
 
 const ordersAndProducts = new OrdersProductsModel();
 

@@ -1,6 +1,6 @@
 import type { Request, Response, Application } from "express";
-import { ProductModel } from "../models/product.model";
-import verifyAuthToken from "../middleware/verifyAuthTok.middlewear";
+import { ProductModel } from "../../models/product.model";
+import verifyAuthToken from "../../middleware/verifyAuthTok.middlewear";
 
 const product = new ProductModel();
 
