@@ -1,6 +1,6 @@
-import express, { Request, Response } from "express";
-import verifyAuthTok from "../../middleware/verifyAuthTok.middlewear";
-import { OrdersProductsModel } from "../../models/orders_products.model";
+import express, { Request, Response } from 'express';
+import verifyAuthTok from '../../middleware/verifyAuthTok.middlewear';
+import { OrdersProductsModel } from '../../models/orders_products.model';
 
 const ordersAndProducts = new OrdersProductsModel();
 
@@ -13,7 +13,10 @@ const showAllOrdersAndProductsHandler = async (req: Request, res: Response) => {
   }
 };
 
-const showProductsForSpecificOrderIdHandler = async (req: Request, res: Response) => {
+const showProductsForSpecificOrderIdHandler = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const orderID = req.params.order_id;
     const retrievedOrdersProducts = await ordersAndProducts.show(orderID);
@@ -33,9 +36,17 @@ const createOrderProductsHandler = async (req: Request, res: Response) => {
 };
 
 const routes_for_orders_products = (app: express.Application) => {
-  app.get("/orders/products", verifyAuthTok, showAllOrdersAndProductsHandler);
-  app.get("/orders/:order_id/products", verifyAuthTok, showProductsForSpecificOrderIdHandler);
-  app.post("/orders/:order_id/products", verifyAuthTok, createOrderProductsHandler);
+  app.get('/orders/products', verifyAuthTok, showAllOrdersAndProductsHandler);
+  app.get(
+    '/orders/:order_id/products',
+    verifyAuthTok,
+    showProductsForSpecificOrderIdHandler
+  );
+  app.post(
+    '/orders/:order_id/products',
+    verifyAuthTok,
+    createOrderProductsHandler
+  );
 };
 
 export default routes_for_orders_products;

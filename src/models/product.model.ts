@@ -1,25 +1,26 @@
-import Client from "../database/database";
-import { TProduct } from "../types/product.type";
+import Client from '../database/database';
+import { TProduct } from '../types/product.type';
 
 export class ProductModel {
-
   async index(): Promise<TProduct[]> {
     try {
       const conn = await Client.connect();
-      const sqlQueryString = "SELECT * FROM products_table";
+      const sqlQueryString = 'SELECT * FROM products_table';
       const queryOutcome = await conn.query(sqlQueryString);
       conn.release();
 
       return queryOutcome.rows;
     } catch (error) {
-      throw new Error(`Error appeared while retrieving the products...Appeared in:\nClass: ProductModel \nFunction: index\nError message: ${error}`);
+      throw new Error(
+        `Error appeared while retrieving the products...Appeared in:\nClass: ProductModel \nFunction: index\nError message: ${error}`
+      );
     }
   }
 
   async show(id: number): Promise<TProduct> {
     try {
       const conn = await Client.connect();
-      const sqlQueryString = "SELECT * FROM products_table WHERE id=($1)";
+      const sqlQueryString = 'SELECT * FROM products_table WHERE id=($1)';
       const queryOutcome = await conn.query(sqlQueryString, [id]);
       conn.release();
 
@@ -36,8 +37,12 @@ export class ProductModel {
       const { name, price, category } = product;
       const conn = await Client.connect();
       const sqlQueryString =
-        "INSERT INTO products_table (name, price, category) VALUES ($1, $2, $3) RETURNING *";
-      const queryOutcome = await conn.query(sqlQueryString, [name, price, category]);
+        'INSERT INTO products_table (name, price, category) VALUES ($1, $2, $3) RETURNING *';
+      const queryOutcome = await conn.query(sqlQueryString, [
+        name,
+        price,
+        category,
+      ]);
       conn.release();
 
       return queryOutcome.rows[0];
@@ -50,4 +55,3 @@ export class ProductModel {
 }
 
 export default ProductModel;
-

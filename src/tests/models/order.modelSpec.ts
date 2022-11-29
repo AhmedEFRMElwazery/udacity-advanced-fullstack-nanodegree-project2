@@ -1,13 +1,13 @@
-import client from "../../database/database";
-import { OrderModel } from "../../models/order.model";
-import { UserModel } from "../../models/user.model";
-import { TOrder } from "../../types/order.type";
-import { TUser } from "../../types/user.type";
+import client from '../../database/database';
+import { OrderModel } from '../../models/order.model';
+import { UserModel } from '../../models/user.model';
+import { TOrder } from '../../types/order.type';
+import { TUser } from '../../types/user.type';
 
 const user = new UserModel();
 const order = new OrderModel();
 
-describe("Checks whether function and method definitions are properly functioning as expected", () => {
+describe('Checks whether function and method definitions are properly functioning as expected', () => {
   it("checks the 'create' method on the 'OrderModel' model is properly functioning", () => {
     expect(order.create).toBeDefined();
   });
@@ -23,29 +23,27 @@ describe("checks the outcome of calling the functions and methods on the 'UserMo
   beforeAll(async () => {
     createdUser = await user.create({
       id: 1,
-      firstname: "Ahmed",
-      lastname: "Mohammed",
-      password: "A.K.A.AhmedElwazery",
+      firstname: 'Ahmed',
+      lastname: 'Mohammed',
+      password: 'A.K.A.AhmedElwazery',
     });
   });
 
   it("checks the outcome of calling the 'create' method on the 'OrderModel', and whether it returns the expected result", async () => {
-    
     const result: TOrder = await order.create({
       id: 1,
-      status: "open",
+      status: 'open',
       user_id: String(createdUser.id),
     });
-    
+
     expect(result).toEqual({
       id: result.id,
-      status: "open",
+      status: 'open',
       user_id: String(createdUser.id),
     });
   });
 
   it("checks the outcome of calling the 'index' method on the 'OrderModel', and whether it returns the expected result", async () => {
-    
     const result: TOrder[] = await order.getCurrentOrderByUser(
       createdUser.id as number
     );
@@ -53,19 +51,18 @@ describe("checks the outcome of calling the functions and methods on the 'UserMo
     expect(result).toEqual([
       {
         id: 3,
-        status: "open",
+        status: 'open',
         user_id: String(createdUser.id) as string,
       },
     ]);
-
   });
 
   //resets all the changes back to the initial conditions
   afterAll(async () => {
     const conn = await client.connect();
-    await conn.query("DELETE FROM orders_products;");
-    await conn.query("DELETE FROM orders;");
-    await conn.query("DELETE FROM users;");
+    await conn.query('DELETE FROM orders_products;');
+    await conn.query('DELETE FROM orders;');
+    await conn.query('DELETE FROM users;');
     conn.release();
   });
 });

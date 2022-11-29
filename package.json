@@ -4,8 +4,8 @@
   "description": "An API project for the fulfillment of project 2 requirements for the Udacity Advanced Fullstack Development Nanodegree",
   "main": "server.main.js",
   "scripts": {
-    "prettier": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
-    "eslint": "eslint . --ext .ts",
+    "beautify": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
+    "check": "eslint . --ext .ts",
     "watch": "tsc-watch --esModuleInterop src/server.main.ts --outDir ./dist --onSuccess \"node ./dist/server.main.js\"",
     "dev": "nodemon ./src/server.main.ts",
     "build": "npx tsc",
@@ -37,6 +37,7 @@
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "express-rate-limit": "^6.7.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1"
   },

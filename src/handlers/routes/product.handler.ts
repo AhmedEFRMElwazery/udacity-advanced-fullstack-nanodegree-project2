@@ -1,6 +1,6 @@
-import type { Request, Response, Application } from "express";
-import { ProductModel } from "../../models/product.model";
-import verifyAuthToken from "../../middleware/verifyAuthTok.middlewear";
+import type { Request, Response, Application } from 'express';
+import { ProductModel } from '../../models/product.model';
+import verifyAuthToken from '../../middleware/verifyAuthTok.middlewear';
 
 const product = new ProductModel();
 
@@ -13,7 +13,10 @@ const retrieveAllProductsHandler = async (req: Request, res: Response) => {
   }
 };
 
-const showAProductWithSpecificIdHandler = async (req: Request, res: Response) => {
+const showAProductWithSpecificIdHandler = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const retrievedProduct = await product.show(parseInt(req.params.id));
     res.json(retrievedProduct);
@@ -35,9 +38,9 @@ const createAProductHandler = async (req: Request, res: Response) => {
 };
 
 const routes_for_products = (app: Application) => {
-  app.get("/products", retrieveAllProductsHandler);
-  app.get("/products/:id", showAProductWithSpecificIdHandler);
-  app.post("/products", verifyAuthToken, createAProductHandler);
+  app.get('/products', retrieveAllProductsHandler);
+  app.get('/products/:id', showAProductWithSpecificIdHandler);
+  app.post('/products', verifyAuthToken, createAProductHandler);
 };
 
 export default routes_for_products;

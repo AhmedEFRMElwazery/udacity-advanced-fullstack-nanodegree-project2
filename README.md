@@ -71,9 +71,9 @@ In this step, we will create both the development (i.e. db_store_backend_dev) as
 ## Package-dot-json-scripts
 -----------------------
 
-- **```npm run prettier```**: To apply the prettier rules to the code base, in order to ensure consistency for how the code is displayed.
+- **```npm run beautify```**: To apply the `prettier` rules to the code base, in order to ensure consistency for how the code is displayed.
 
-- **```npm run eslint```**: This "eslint" command will help you to write proper TypeScript code, but ensuring that there is no implict typing throughout the codebase.
+- **```npm run check```**: This will launch the `eslint` module and apply its respective rules to the codebase, hence will help in writing proper TypeScript code.
 
 - **```npm run dev```**: This command will start the nodemon server on the server.main.ts.
 

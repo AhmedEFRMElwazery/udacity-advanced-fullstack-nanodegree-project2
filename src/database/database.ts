@@ -1,4 +1,4 @@
-import { Pool } from "pg";
+import { Pool } from 'pg';
 import {
   DB_POSTGRES_HOST,
   DB_POSTGRES_DBDEV,
@@ -7,11 +7,11 @@ import {
   DB_POSTGRES_DBTEST,
   DB_POSTGRES_PASSWORD,
   DB_POSTGRES_PORT,
-} from "../config";
+} from '../config';
 
 let client: any;
 
-if (ENV_STATUS === "dev") {
+if (ENV_STATUS === 'dev') {
   client = new Pool({
     host: DB_POSTGRES_HOST,
     database: DB_POSTGRES_DBDEV,
@@ -19,7 +19,7 @@ if (ENV_STATUS === "dev") {
     password: DB_POSTGRES_PASSWORD,
     port: parseInt(DB_POSTGRES_PORT as string, 10),
   });
-} else if (ENV_STATUS === "test") {
+} else if (ENV_STATUS === 'test') {
   client = new Pool({
     host: DB_POSTGRES_HOST,
     database: DB_POSTGRES_DBTEST,
