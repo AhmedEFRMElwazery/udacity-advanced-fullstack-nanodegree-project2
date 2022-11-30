@@ -19,7 +19,7 @@ describe("Checks the function and method definitions on the 'UserModel' model", 
 describe("Checks whether function and method definitions on the 'UserModel' model are properly functioning as expected", () => {
   it("checks the outcome of calling the 'create' method on the 'UserModel', and whether it returns the expected result", async () => {
     const result: TUser = await user.create({
-      id: 3,
+      id: 2,
       firstname: 'Ahmed',
       lastname: 'Mohammed',
       password: 'A.K.A.AhmedElwazery',
@@ -52,7 +52,7 @@ describe("Checks whether function and method definitions on the 'UserModel' mode
   //resets all the changes back to the initial conditions
   afterAll(async () => {
     const conn = await client.connect();
-    await conn.query('DELETE FROM users;');
+    await conn.query('DELETE FROM users_table;');
     conn.release();
   });
 });

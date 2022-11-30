@@ -89,10 +89,10 @@ describe("Checks whether the status code retured when querying the '/orders' end
   //resets all the changes back to the initial conditions
   afterAll(async () => {
     const conn = await client.connect();
-    await conn.query('DELETE FROM orders_products;');
-    await conn.query('DELETE FROM orders;');
-    await conn.query('DELETE FROM users;');
-    await conn.query('DELETE FROM products;');
+    await conn.query('DELETE FROM orders_and_products_table;');
+    await conn.query('DELETE FROM orders_table;');
+    await conn.query('DELETE FROM users_table;');
+    await conn.query('DELETE FROM products_table;');
     conn.release();
   });
 });

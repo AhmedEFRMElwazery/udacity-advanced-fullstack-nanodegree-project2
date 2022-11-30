@@ -46,7 +46,7 @@ describe("Checks whether the status code returned when querying the '/users' end
   //resets all the changes back to the initial conditions
   afterAll(async () => {
     const conn = await client.connect();
-    const sqlQuery = 'DELETE FROM users;';
+    const sqlQuery = 'DELETE FROM users_table;';
     await conn.query(sqlQuery);
     await conn.release();
   });

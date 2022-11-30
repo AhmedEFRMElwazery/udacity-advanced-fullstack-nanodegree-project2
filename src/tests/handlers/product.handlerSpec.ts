@@ -66,7 +66,7 @@ describe("Checks whether the status code returned when querying the '/products' 
   //resets all the changes back to the initial conditions
   afterAll(async () => {
     const conn = await client.connect();
-    const sqlQuery = 'DELETE FROM products;';
+    const sqlQuery = 'DELETE FROM products_table;';
     await conn.query(sqlQuery);
     await conn.release();
   });

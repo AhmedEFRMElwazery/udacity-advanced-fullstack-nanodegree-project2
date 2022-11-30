@@ -34,7 +34,7 @@ describe("Checks whether function and method definitions on the 'ProductModel' m
   });
 
   it("checks the outcome of calling the 'index' method on the 'ProductModel', and whether it returns the expected result", async () => {
-    const outcome: TProduct[] = await product.index();
+    const outcome = await product.index();
 
     expect(outcome).toEqual([
       {
@@ -67,7 +67,7 @@ describe("Checks whether function and method definitions on the 'ProductModel' m
   //resets all the changes back to the initial conditions
   afterAll(async () => {
     const conn = await client.connect();
-    const sqlQuery = 'DELETE FROM products;';
+    const sqlQuery = 'DELETE FROM products_table;';
     await conn.query(sqlQuery);
     await conn.release();
   });
