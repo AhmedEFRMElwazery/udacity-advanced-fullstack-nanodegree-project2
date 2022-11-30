@@ -10,11 +10,12 @@ import {
 } from './handlers/index.handler';
 import logger from './middleware/logger.module';
 import { rateLimit } from 'express-rate-limit';
+import db from './database/database';
 
 export const app: Application = express();
 
 app.use(bodyParser.json());
-app.use(logger);
+// app.use(logger);
 app.use(
   rateLimit({
     windowMs: 11 * 60 * 1000, // Limit the request window to 11 minutes per IP address
@@ -30,6 +31,13 @@ routes_for_products(app);
 routes_for_user(app);
 routes_for_order(app);
 routes_for_orders_products(app);
+
+db.connect().then((client: any) => {
+  return client.query('SELECT NOW()').then((res: { rows: any }) => {
+    client.release();
+    console.log(res.rows);
+  });
+});
 
 app.get('/', function (req: Request, res: Response) {
   res.sendFile(path.resolve(__dirname, '../assets/pages/index.html'));

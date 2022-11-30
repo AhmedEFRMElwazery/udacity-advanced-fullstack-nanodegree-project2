@@ -13,7 +13,7 @@ import path from 'path';
  * */
 const writeDataToLoggerFile = async (data: string) => {
   const loggerFile = await fsPromises.open(
-    path.join(__dirname, '..', '..', 'assets', 'loggerFile.txt'),
+    path.resolve(__dirname, '..', '..', 'assets', 'loggerFile.txt'),
     'a+'
   );
   //attach the details of the (newly) conducted image processing to the already exiting ones, if there is any.
