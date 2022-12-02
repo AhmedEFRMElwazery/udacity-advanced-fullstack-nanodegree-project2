@@ -18,7 +18,7 @@ export class OrdersProductsModel {
   async topFive(): Promise<TOrder_Product[]>{
     try{
       const conn = await client.connect();
-      const sqlQueryString= 'SELECT * FROM orders_and_products_table JOIN products_table ON product_id = id ORDER BY quantity LIMIT 5;'; //
+      const sqlQueryString= 'SELECT * FROM orders_and_products_table JOIN products_table ON product_id = id ORDER BY quantity DESC LIMIT 5;'; //
       const queryOutcome = await conn.query(sqlQueryString);
       conn.release();
 
