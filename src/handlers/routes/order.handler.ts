@@ -1,8 +1,10 @@
-import type { Request, Response, Application } from 'express';
+import express, { Request, Response, Router } from 'express';
 import { OrderModel } from '../../models/order.model';
 import verifyAuthTok from '../../middleware/verifyAuthTok.middlewear';
 
 const order = new OrderModel();
+
+const routes_for_orders: Router = express.Router();
 
 const createOrderHandler = async (req: Request, res: Response) => {
   try {
@@ -24,9 +26,7 @@ const getCurrentOrderByUserHandler = async (req: Request, res: Response) => {
   }
 };
 
-const routes_for_order = (app: Application) => {
-  app.post('/orders', verifyAuthTok, createOrderHandler);
-  app.get('/orders/:user_id', verifyAuthTok, getCurrentOrderByUserHandler);
-};
+routes_for_orders.post('/', verifyAuthTok, createOrderHandler);
+routes_for_orders.get('/:user_id', verifyAuthTok, getCurrentOrderByUserHandler);
 
-export default routes_for_order;
+export default routes_for_orders;

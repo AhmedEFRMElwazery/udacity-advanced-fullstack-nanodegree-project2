@@ -6,12 +6,12 @@ import { TOKEN } from '../../config/config';
 
 const req = supertest(app);
 
-describe("Checks whether the status code returned when querying the '/products' endpoint is correct", () => {
+describe("Checks whether the status code returned when querying the '/storebackend/api/products' endpoint is correct", () => {
   let user: unknown;
 
   //create a user with firstname 'jarvis', lastname 'army', and a password of '11011'
   beforeAll(async () => {
-    user = await req.post('/users').send({
+    user = await req.post('/storebackend/api/users').send({
       firstName: 'jarvis',
       lastName: 'army',
       password: '11011',
@@ -19,12 +19,12 @@ describe("Checks whether the status code returned when querying the '/products' 
   });
 
   it("returns a status code of '200' if all the products were retrieved successfully", async () => {
-    const res = await req.get(`/products`);
+    const res = await req.get(`/storebackend/api/products`);
     expect(res.status).toBe(200);
   });
 
   it("returns a status code of '401' if a new product is created WITHOUT a jwt", async () => {
-    const res = await req.post('/products');
+    const res = await req.post('/storebackend/api/products');
     expect(res.status).toEqual(401);
   });
 
@@ -32,7 +32,7 @@ describe("Checks whether the status code returned when querying the '/products' 
     const signed_jsonwebtoken = jwt.sign({ user }, TOKEN as string);
 
     const res = await req
-      .post('/products')
+      .post('/storebackend/api/products')
       .send({ name: 'Apples', price: 11, category: 'fruits' })
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
@@ -50,13 +50,13 @@ describe("Checks whether the status code returned when querying the '/products' 
     const signed_jsonwebtoken = jwt.sign({ user }, TOKEN as string);
 
     const createdProduct = await req
-      .post('/products')
+      .post('/storebackend/api/products')
       .send({ name: 'Apples', price: 11, category: 'fruits' })
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
     const productData = createdProduct.body;
 
-    const res = await req.get(`/products/${productData.id}`);
+    const res = await req.get(`/storebackend/api/products/${productData.id}`);
 
     expect(res.status).toEqual(200);
 

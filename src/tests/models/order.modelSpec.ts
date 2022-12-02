@@ -16,13 +16,12 @@ describe('Checks whether function and method definitions are properly functionin
   });
 });
 
-describe("checks the outcome of calling the functions and methods on the 'UserModel' model", () => {
+describe("checks the outcome of calling the functions and methods on the 'OrderModel' model", () => {
   let createdUser = {} as TUser;
 
   //create a user with firstname 'Ahmed', lastname 'Mohammed', and a password of 'A.K.A.AhmedElwazery'
   beforeAll(async () => {
     createdUser = await user.create({
-      id: 1,
       firstname: 'Ahmed',
       lastname: 'Mohammed',
       password: 'A.K.A.AhmedElwazery',
@@ -50,7 +49,7 @@ describe("checks the outcome of calling the functions and methods on the 'UserMo
 
     expect(result).toEqual([
       {
-        id: 3,
+        id: createdUser.id,
         status: 'open',
         user_id: String(createdUser.id) as string,
       },

@@ -1,10 +1,12 @@
-import type { Request, Response, Application } from 'express';
+import express, { Request, Response, Router } from 'express';
 import jwt, { Secret } from 'jsonwebtoken';
 import { TOKEN } from '../../config/config';
 import { UserModel } from '../../models/user.model';
 import verifyAuthToken from '../../middleware/verifyAuthTok.middlewear';
 
 const user = new UserModel();
+
+const routes_for_users: Router = express.Router();
 
 const retrieveAllUsersHandler = async (req: Request, res: Response) => {
   try {
@@ -50,11 +52,9 @@ const authenticateAUserHandler = async (req: Request, res: Response) => {
   }
 };
 
-const routes_for_user = (app: Application) => {
-  app.get('/users', verifyAuthToken, retrieveAllUsersHandler);
-  app.get('/users/:id', verifyAuthToken, showAUserWithSpecificIdHandler);
-  app.post('/users', createAUserHandler);
-  app.get('/users/authenticate', authenticateAUserHandler);
-};
+routes_for_users.get('/', verifyAuthToken, retrieveAllUsersHandler);
+routes_for_users.get('/:id', verifyAuthToken, showAUserWithSpecificIdHandler);
+routes_for_users.post('/', createAUserHandler);
+routes_for_users.get('/authenticate', authenticateAUserHandler);
 
-export default routes_for_user;
+export default routes_for_users;

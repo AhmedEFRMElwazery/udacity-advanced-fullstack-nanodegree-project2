@@ -1,8 +1,10 @@
-import type { Request, Response, Application } from 'express';
+import express, { Request, Response, Router } from 'express';
 import { ProductModel } from '../../models/product.model';
 import verifyAuthToken from '../../middleware/verifyAuthTok.middlewear';
 
 const product = new ProductModel();
+
+const routes_for_products: Router = express.Router();
 
 const retrieveAllProductsHandler = async (req: Request, res: Response) => {
   try {
@@ -37,10 +39,8 @@ const createAProductHandler = async (req: Request, res: Response) => {
   }
 };
 
-const routes_for_products = (app: Application) => {
-  app.get('/products', retrieveAllProductsHandler);
-  app.get('/products/:id', showAProductWithSpecificIdHandler);
-  app.post('/products', verifyAuthToken, createAProductHandler);
-};
+routes_for_products.get('/', retrieveAllProductsHandler);
+routes_for_products.get('/:id', showAProductWithSpecificIdHandler);
+routes_for_products.post('/', verifyAuthToken, createAProductHandler);
 
 export default routes_for_products;

@@ -1,8 +1,10 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import verifyAuthTok from '../../middleware/verifyAuthTok.middlewear';
 import { OrdersProductsModel } from '../../models/orders_products.model';
 
 const ordersAndProducts = new OrdersProductsModel();
+
+const routes_for_orders_products: Router = express.Router();
 
 const showAllOrdersAndProductsHandler = async (req: Request, res: Response) => {
   try {
@@ -35,18 +37,20 @@ const createOrderProductsHandler = async (req: Request, res: Response) => {
   }
 };
 
-const routes_for_orders_products = (app: express.Application) => {
-  app.get('/orders/products', verifyAuthTok, showAllOrdersAndProductsHandler);
-  app.get(
-    '/orders/:order_id/products',
-    verifyAuthTok,
-    showProductsForSpecificOrderIdHandler
-  );
-  app.post(
-    '/orders/:order_id/products',
-    verifyAuthTok,
-    createOrderProductsHandler
-  );
-};
+routes_for_orders_products.get(
+  '/products',
+  verifyAuthTok,
+  showAllOrdersAndProductsHandler
+);
+routes_for_orders_products.get(
+  '/:order_id/products',
+  verifyAuthTok,
+  showProductsForSpecificOrderIdHandler
+);
+routes_for_orders_products.post(
+  '/:order_id/products',
+  verifyAuthTok,
+  createOrderProductsHandler
+);
 
 export default routes_for_orders_products;

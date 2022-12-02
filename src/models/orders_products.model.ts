@@ -11,7 +11,7 @@ export class OrdersProductsModel {
 
       return queryOutcome.rows;
     } catch (error) {
-      throw new Error(`${error}`);
+      throw new Error(`Error appeared while trying to list all the orders...Appeared in:\nClass: OrdersProductsModel \nFunction: index\nError message: ${error}`);
     }
   }
 
@@ -25,7 +25,7 @@ export class OrdersProductsModel {
 
       return queryOutcome.rows[0];
     } catch (error) {
-      throw new Error(`${error}`);
+      throw new Error(`Error appeared while showing the order with id: ${id}...Appeared in:\nClass: OrdersProductsModel \nFunction: show\nError message: ${error}`);
     }
   }
 

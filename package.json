@@ -14,7 +14,7 @@
     "migrate:downd": "db-migrate down",
     "migrate:upt": "db-migrate --env test up",
     "migrate:downt": "db-migrate --env test down",
-    "migrate:resetd": "db-migrate  reset",
+    "migrate:resetd": "db-migrate reset",
     "migrate:resett": "db-migrate --env test reset",
     "migrate:test": "set ENV_STATUS=test && npm run migrate:upt && npm run test && npm run migrate:resett ",
     "start": "npm run build && nodemon dist/server.main.js"

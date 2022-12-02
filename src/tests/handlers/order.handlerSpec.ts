@@ -6,20 +6,22 @@ import { TOKEN } from '../../config/config';
 
 const req = supertest(app);
 
-describe("Checks whether the status code retured when querying the '/orders' endpoint is correct", () => {
+describe("Checks whether the status code retured when querying the '/storebackend/api/orders' endpoint is correct", () => {
   let user: unknown;
 
   //create a user with firstname 'jarvis', lastname 'army', and a password of '11011'
   beforeAll(async () => {
-    user = await req.post('/users').send({
-      firstName: 'jarvis',
+    user = await req.post('/storebackend/api/users').send({
+      firstName: 'Ahmed',
       lastName: 'army',
       password: '11011',
     });
   });
 
   it("returns a status code of '401' if a new order is created WITHOUT a jsonwebtoken", async () => {
-    const res = await req.post('/orders').send({ user_id: 1, status: 'open' });
+    const res = await req
+      .post('/storebackend/api/orders')
+      .send({ user_id: 1, status: 'open' });
     expect(res.status).toEqual(401);
   });
 
@@ -27,11 +29,11 @@ describe("Checks whether the status code retured when querying the '/orders' end
     const signed_jsonwebtoken = jwt.sign({ user }, TOKEN as string);
 
     const retrieveUser = await req
-      .get('/users/1')
+      .get('/storebackend/api/users/1')
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
     const res = await req
-      .post('/orders')
+      .post('/storebackend/api/orders')
       .send({ user_id: retrieveUser.body.id, status: 'open' })
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
     expect(res.status).toEqual(200);
@@ -41,7 +43,7 @@ describe("Checks whether the status code retured when querying the '/orders' end
     const signed_jsonwebtoken = jwt.sign({ user }, TOKEN as string);
 
     const res = await req
-      .get(`/orders/${1}`)
+      .get(`/storebackend/api/orders/${1}`)
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
     expect(res.status).toEqual(200);
@@ -51,25 +53,25 @@ describe("Checks whether the status code retured when querying the '/orders' end
     const signed_jsonwebtoken = jwt.sign({ user }, TOKEN as string);
 
     const retrieveUser = await req
-      .get('/users/1')
+      .get('/storebackend/api/users/1')
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
     const createdProduct = await req
-      .post('/products')
+      .post('/storebackend/api/products')
       .send({ name: 'Cucumber', price: 5, category: 'vegetables' })
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
     const productData = createdProduct.body;
 
     const createdOrder = await req
-      .post('/orders')
+      .post('/storebackend/api/orders')
       .send({ user_id: retrieveUser.body.id, status: 'open' })
       .set('Authorization', 'Bearer ' + signed_jsonwebtoken);
 
     const orderData = createdOrder.body;
 
     const createOrderProduct = await req
-      .post(`/orders/${orderData.id}/products`)
+      .post(`/storebackend/api/orders/${orderData.id}/products`)
       .send({
         order_id: orderData.id,
         product_id: productData.id,
