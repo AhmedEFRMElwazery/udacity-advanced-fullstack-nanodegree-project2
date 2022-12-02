@@ -8,7 +8,7 @@ export class OrderModel {
       const conn = await Client.connect();
 
       const sqlQueryString =
-        'INSERT INTO orders_table (status, user_id) VALUES ($1, $2) RETURNING *';
+        'INSERT INTO orders_table (status, user_id) VALUES ($1, $2) RETURNING *;';
       const queryOutcome = await conn.query(sqlQueryString, [status, user_id]);
       conn.release();
 
@@ -24,7 +24,7 @@ export class OrderModel {
     try {
       const conn = await Client.connect();
       const sqlQueryString =
-        "SELECT * FROM orders_table WHERE user_id=($1) AND status='open'";
+        "SELECT * FROM orders_table WHERE user_id=($1) AND status='open';";
       const queryOutcome = await conn.query(sqlQueryString, [user_id]);
       conn.release();
 

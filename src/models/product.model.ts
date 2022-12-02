@@ -1,3 +1,4 @@
+import client from '../database/database';
 import Client from '../database/database';
 import { TProduct } from '../types/product.type';
 
@@ -5,7 +6,7 @@ export class ProductModel {
   async index(): Promise<TProduct[]> {
     try {
       const conn = await Client.connect();
-      const sqlQueryString = 'SELECT * FROM products_table';
+      const sqlQueryString = 'SELECT * FROM products_table;';
       const queryOutcome = await conn.query(sqlQueryString);
       conn.release();
 
@@ -20,7 +21,7 @@ export class ProductModel {
   async show(id: number): Promise<TProduct> {
     try {
       const conn = await Client.connect();
-      const sqlQueryString = 'SELECT * FROM products_table WHERE id=($1)';
+      const sqlQueryString = 'SELECT * FROM products_table WHERE id=($1);';
       const queryOutcome = await conn.query(sqlQueryString, [id]);
       conn.release();
 
@@ -37,7 +38,7 @@ export class ProductModel {
       const { name, price, category } = product;
       const conn = await Client.connect();
       const sqlQueryString =
-        'INSERT INTO products_table (name, price, category) VALUES ($1, $2, $3) RETURNING *';
+        'INSERT INTO products_table (name, price, category) VALUES ($1, $2, $3) RETURNING *;';
       const queryOutcome = await conn.query(sqlQueryString, [
         name,
         price,

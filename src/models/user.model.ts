@@ -7,7 +7,7 @@ export class UserModel {
   async index(): Promise<TUser[]> {
     try {
       const conn = await Client.connect();
-      const sqlQueryString = 'SELECT * FROM users_table';
+      const sqlQueryString = 'SELECT * FROM users_table;';
       const queryOutcome = await conn.query(sqlQueryString);
       conn.release();
 
@@ -22,7 +22,7 @@ export class UserModel {
   async show(id: number): Promise<TUser> {
     try {
       const conn = await Client.connect();
-      const sqlQueryString = 'SELECT * FROM users_table WHERE id=($1)';
+      const sqlQueryString = 'SELECT * FROM users_table WHERE id=($1);';
       const queryOutcome = await conn.query(sqlQueryString, [id]);
       conn.release();
 
@@ -39,7 +39,7 @@ export class UserModel {
       const { firstname, lastname, password } = user;
       const conn = await Client.connect();
       const sqlQueryString =
-        'INSERT INTO users_table (firstName, lastName, password) VALUES ($1, $2, $3) RETURNING *';
+        'INSERT INTO users_table (firstName, lastName, password) VALUES ($1, $2, $3) RETURNING *;';
       const hash = hashSync(
         password + BCRYPT_PASS,
         genSaltSync(Number(SALT_ROUNDS))
@@ -64,7 +64,7 @@ export class UserModel {
       const { firstname, lastname, password } = user;
       const conn = await Client.connect();
       const sqlQueryString =
-        'SELECT * FROM users_table WHERE firstName=($1) AND lastName=($2)';
+        'SELECT * FROM users_table WHERE firstName=($1) AND lastName=($2);';
 
       const queryOutcome = await conn.query(sqlQueryString, [
         firstname,

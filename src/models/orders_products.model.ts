@@ -5,7 +5,7 @@ export class OrdersProductsModel {
   async index(): Promise<TOrder_Product[]> {
     try {
       const conn = await client.connect();
-      const sqlQueryString = 'SELECT * FROM orders_and_products_table';
+      const sqlQueryString = 'SELECT * FROM orders_and_products_table;';
       const queryOutcome = await conn.query(sqlQueryString);
       conn.release();
 
@@ -15,11 +15,27 @@ export class OrdersProductsModel {
     }
   }
 
+  async topFive(): Promise<TOrder_Product[]>{
+    try{
+      const conn = await client.connect();
+      const sqlQueryString= 'SELECT * FROM orders_and_products_table JOIN products_table ON product_id = id ORDER BY quantity LIMIT 5;'; //
+      const queryOutcome = await conn.query(sqlQueryString);
+      conn.release();
+
+      return queryOutcome.rows;
+    }catch(error){
+      throw new Error(
+        `Error appeared while retrieving the top 5 products...Appeared in:\nClass: ProductModel \nFunction: topFive\nError message: ${error}`
+      );
+
+    }
+  }
+
   async show(id: string): Promise<TOrder_Product> {
     try {
       const conn = await client.connect();
       const sqlQueryString =
-        'SELECT * FROM orders_and_products_table WHERE order_id=$1';
+        'SELECT * FROM orders_and_products_table WHERE order_id=$1;';
       const queryOutcome = await conn.query(sqlQueryString, [id]);
       conn.release();
 
@@ -34,7 +50,7 @@ export class OrdersProductsModel {
       const { order_id, product_id, quantity } = orderProduct;
       const conn = await client.connect();
       const sqlQueryString =
-        'INSERT INTO orders_and_products_table (order_id, product_id, quantity) VALUES($1,$2,$3) RETURNING *';
+        'INSERT INTO orders_and_products_table (order_id, product_id, quantity) VALUES($1,$2,$3) RETURNING *;';
       const queryOutcome = await conn.query(sqlQueryString, [
         order_id,
         product_id,
